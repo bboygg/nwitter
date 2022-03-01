@@ -2,8 +2,8 @@
 
 Twitter (mini)clone with REact and Firebase
 
-### Get started 🚀
-
+## Get started 🚀
+</br>
 
 ## Troubleshooting 🎯
 
