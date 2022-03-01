@@ -1,6 +1,6 @@
 # Nwitter :bird:
 
-Twitter (mini)clone with REact and Firebase
+Twitter clone project with React and Firebase.
 
 ## Get started 🚀
 </br>
