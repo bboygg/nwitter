@@ -2,9 +2,16 @@
 
 Twitter clone project with React and Firebase.
 
-## Get started 🚀
+
+## Getting started 🚀
 </br>
 
+Run below command in terminal window to run program
+
+```shell
+npm start
+```
+  
 ## Troubleshooting 🎯
 
 ### sh: react-scripts: command not found
@@ -15,4 +22,23 @@ Twitter clone project with React and Firebase.
 - To Solve sh: react-scripts: command not found Error Just try to install react-scripts with this command: npm i react-scripts And then try to run your project with npm start command Your error should be fixed now.
 
 
+### export 'default' (imported as 'firebase') was not found in 'firebase/app'
 
+> I am using firebase in my react app But today I am facing following error export ‘default’ (imported as ‘firebase’) was not found in ‘firebase/app’ in react. So Here I am Explain to you all the possible solutions here.
+
+- According to firebase documents: Update imports to v9 compat. In order to keep your code functioning after updating your dependency from v8 to v9 beta, change your import statements to use the “compat” version of each import. For example:
+
+Before: version 8
+``` javascript
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+```
+
+After: version 9 compat
+``` javascript
+// v9 compat packages are API compatible with v8 code
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+```
