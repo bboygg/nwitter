@@ -8,6 +8,7 @@ const Home = ({ userObj }) => {
     const [nweets, setNweets] = useState([]);
     const [attachment, setAttachment] = useState("");
 
+
     // Delete getNweets function to change this function to shows tweets in realtime 
     // const getNweets = async () => {
     //     const dbNweets = await dbService.collection("nweets").get();
@@ -38,9 +39,11 @@ const Home = ({ userObj }) => {
         //     creatorId: userObj.uid,
         // });
         // setNweet("");
-        const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
-        const response = await attachmentRef.putString(attachment, "data_url");
-        console.log(response);
+        const attachmentRef = storageService
+            .ref()
+            .child(`${userObj.uid}/${uuidv4()}`);
+            const response = await attachmentRef.putString(attachment, "data_url");
+            console.log(response);
     };
 
     const onChange = (event) => {
@@ -93,7 +96,7 @@ const Home = ({ userObj }) => {
             />
             {attachment && (
                 <div>
-                    <img src={attachment} alt="" width="50px" height="50px"/>
+                    <img src={attachment} alt="" width="200px" height="100px"/>
                     <button onClick={onClearAttachment}>Clear</button>
                 </div>
             )}

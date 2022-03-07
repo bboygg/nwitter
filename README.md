@@ -42,3 +42,20 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 ```
+
+
+### firebase storage permission deny error
+
+- In order to write the file to Storage, change Storage Rules to allow the read, and write if authorized user. Fore example:
+
+
+```javascript
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+```
