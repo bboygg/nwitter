@@ -39,11 +39,23 @@ const Home = ({ userObj }) => {
         //     creatorId: userObj.uid,
         // });
         // setNweet("");
-        const attachmentRef = storageService
-            .ref()
-            .child(`${userObj.uid}/${uuidv4()}`);
+        let attachmentUrl = "";
+        if (attachmentUrl !== "") {
+            const attachmentRef = storageService
+                .ref()
+                .child(`${userObj.uid}/${uuidv4()}`);
             const response = await attachmentRef.putString(attachment, "data_url");
-            console.log(response);
+            attachmentUrl = await response.ref.getDownloadURL();
+        }
+        
+        await dbService.collection("nweets").add({
+            text: nweet,
+            createdAt: Date.now(),
+            cratorId: userObj.uid,
+            attachmentUrl,
+        });
+        setNweet("");
+        setAttachment("");
     };
 
     const onChange = (event) => {

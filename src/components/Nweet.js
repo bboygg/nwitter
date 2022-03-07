@@ -1,16 +1,18 @@
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 import { useState } from "react";
 
 const Nweet = ({ nweetObj, isOwner }) => {
     const [editing, setEditing] = useState(false);
     const [newNweet, setNewNweet] = useState(nweetObj.text);
+    
     const onDeleteClick = async () => {
         const ok = window.confirm("Are you sure you want to delete tweet?");
-        console.log(ok);
+        //console.log(ok);
         if (ok) {
-            console.log(nweetObj.id);
-            const data = await dbService.doc(`nweets/${nweetObj.id}`).delete();
-            console.log(data);
+            //console.log(nweetObj.id);
+            await dbService.doc(`nweets/${nweetObj.id}`).delete();
+            if (nweetObj.attachmentUrl !== "")
+            await storageService.refFromURL(nweetObj.attachmentUrl).delete();
         }
     };
 
@@ -43,6 +45,9 @@ const Nweet = ({ nweetObj, isOwner }) => {
             ) : (
                 <>
                     <h4>{nweetObj.text}</h4>
+                    {nweetObj.attachmentUrl && (
+                        <img src={nweetObj.attachmentUrl} width="50px" height="50px" />
+                    )}
                     {isOwner && (
                     <>
                         <button onClick={onDeleteClick}>Delete Nweet</button>
