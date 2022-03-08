@@ -9,17 +9,6 @@ const Home = ({ userObj }) => {
     const [attachment, setAttachment] = useState("");
 
 
-    // Delete getNweets function to change this function to shows tweets in realtime 
-    // const getNweets = async () => {
-    //     const dbNweets = await dbService.collection("nweets").get();
-    //     dbNweets.forEach((document) => {
-    //         const nweetObject = { ...document.data(), id: document.id};
-    //         setNweets((prev) => [nweetObject, ...prev])
-    //     });
-    // };
-    // use snapshot function instead of get to make it work in in realtime
-    // map function increase code effeciency, because forEach function have to used in each Array elements, 
-    // but map function only used one time to return whole array at once.
     useEffect(() => {
         dbService.collection("nweets").onSnapshot((snapshot) => {
             const newArray = snapshot.docs.map((document) => ({
@@ -33,11 +22,15 @@ const Home = ({ userObj }) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        const attachmentRef = storageService
+        let attachmentUrl = "";
+        if (attachment !== "") {
+            const attachmentRef = storageService
             .ref()
             .child(`${userObj.uid}/${uuidv4()}`);
         const response = await attachmentRef.putString(attachment, "data_url");
         const attachmentUrl = await response.ref.getDownloadURL();
+        }
+        
         await dbService.collection("nweets").add({
             text: nweet,
             createdAt: Date.now(),
@@ -67,11 +60,8 @@ const Home = ({ userObj }) => {
                 currentTarget: { result },
             } = finishedEvent;
             setAttachment(result);
-            console.log(finishedEvent);
         };
         reader.readAsDataURL(theFile);
-        
-
     };
 
     const onClearAttachment = () => setAttachment("");
@@ -98,7 +88,7 @@ const Home = ({ userObj }) => {
             />
             {attachment && (
                 <div>
-                    <img src={attachment} alt="" width="200px" height="100px"/>
+                    <img src={attachment} alt="" width="50px" height="50px"/>
                     <button onClick={onClearAttachment}>Clear</button>
                 </div>
             )}
