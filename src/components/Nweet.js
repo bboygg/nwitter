@@ -12,7 +12,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
             //console.log(nweetObj.id);
             await dbService.doc(`nweets/${nweetObj.id}`).delete();
             if (nweetObj.attachmentUrl !== "")
-            await storageService.refFromURL(nweetObj.attachmentUrl).delete();
+                await storageService.refFromURL(nweetObj.attachmentUrl).delete();
         }
     };
 
@@ -27,36 +27,36 @@ const Nweet = ({ nweetObj, isOwner }) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        await dbService.doc('nweets/${nweetObj.id}').update({ text: newNweet });
+        await dbService.doc(`nweets/${nweetObj.id}`).update({ text: newNweet });
         setEditing(false);
     };
 
 
     return (
         <div>
-            {editing ? (
-                <>
-                    <form onSubmit={onSubmit}>
-                        <input onChange={onChange} value={newNweet} required />
-                        <input type="submit" value="Update Nweet" />
-                    </form>
-                    <button onClick={toggleEditing}>Cancel</button>
-                </>
-            ) : (
-                <>
-                <h4>{nweetObj.text}</h4>
-                {nweetObj.attachmentUrl && (
-                    <img src={nweetObj.attachmentUrl} width="100px" height="100px" />
-                )}
-                    {isOwner &&(
-                    <>
-                        <button onClick={onDeleteClick}>Delete Nweet</button>
-                        <button onClick={toggleEditing}>Edit Nweet</button>
-                    </>
-                    )}
-                </>
+        {editing ? (
+          <>
+            <form onSubmit={onSubmit}>
+              <input onChange={onChange} value={newNweet} required />
+              <input type="submit" value="Update Nweet" />
+            </form>
+            <button onClick={toggleEditing}>Cancel</button>
+          </>
+        ) : (
+          <>
+            <h4>{nweetObj.text}</h4>
+            {nweetObj.attachmentUrl && (
+              <img src={nweetObj.attachmentUrl} alt="" width="50px" height="50px" />
             )}
-        </div>
+            {isOwner && (
+              <>
+                <button onClick={onDeleteClick}>Delete Nweet</button>
+                <button onClick={toggleEditing}>Edit Nweet</button>
+              </>
+            )}
+          </>
+        )}
+      </div>
     );
 };
 

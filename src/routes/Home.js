@@ -30,7 +30,6 @@ const Home = ({ userObj }) => {
         const response = await attachmentRef.putString(attachment, "data_url");
         const attachmentUrl = await response.ref.getDownloadURL();
         }
-        
         await dbService.collection("nweets").add({
             text: nweet,
             createdAt: Date.now(),
