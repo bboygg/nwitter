@@ -28,12 +28,12 @@ const Home = ({ userObj }) => {
             .ref()
             .child(`${userObj.uid}/${uuidv4()}`);
         const response = await attachmentRef.putString(attachment, "data_url");
-        const attachmentUrl = await response.ref.getDownloadURL();
+        attachmentUrl = await response.ref.getDownloadURL();
         }
         await dbService.collection("nweets").add({
             text: nweet,
             createdAt: Date.now(),
-            cratorId: userObj.uid,
+            creatorId: userObj.uid,
             attachmentUrl,
         });
         setNweet("");
@@ -76,15 +76,8 @@ const Home = ({ userObj }) => {
             placeholder="What's on your mind?"
             maxLength={120}
             />
-            <input
-            type="file" 
-            accept="image/*"
-            onChange={onFileChange} 
-            />
-            <input 
-            type="submit" 
-            value="Nweet" 
-            />
+            <input type="file" accept="image/*" onChange={onFileChange} />
+            <input type="submit" value="Nweet" />
             {attachment && (
                 <div>
                     <img src={attachment} alt="" width="50px" height="50px"/>
