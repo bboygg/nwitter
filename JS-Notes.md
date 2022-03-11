@@ -1,4 +1,4 @@
-# JS-Notes 𝒥𝓈
+# JS-Notes 𝒥𝓈 📚
 
 Since I'm new to Java script language, this note has been created to summarize Java script syntax used during twitter clone project      
 <br/>
@@ -70,5 +70,26 @@ let myFunction = (a, b) => a * b;
 <p>My mother has <span style="color:blue">blue</span> eyes.</p>
 ```
 
+### What is Components? 
+Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
 
+Components come in two types, Class components and Function components, in this tutorial we will concentrate on Function components.
 
+- Class Components
+```javascript
+class Car extends React.Component {
+  render() {
+    return <h2>Hi, I am a Car!</h2>;
+  }
+}
+```
+- Function Components  
+
+Here is the same example as above, but created using a Function component instead.
+
+A Function component also returns HTML, and behaves much the same way as a Class component, but Function components can be written using much less code, are easier to understand, and will be preferred in this tutorial.
+```javascript
+function Car() {
+  return <h2>Hi, I am a Car!</h2>;
+}
+```
