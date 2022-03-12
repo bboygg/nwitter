@@ -60,3 +60,17 @@ service firebase.storage {
 }
 ```
 <br/>  
+
+### Navigate is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>
+As long as i know, in react-router v6 <Route> it's the only component that's able to be child of <Routes>
+
+From: 
+```javascript
+<Navigate from="*" to="/" />
+
+```
+
+To: 
+```javascript
+<Route exact path="*" element={<Navigate to="/" />} />
+```
