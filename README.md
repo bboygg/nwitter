@@ -59,3 +59,26 @@ service firebase.storage {
   }
 }
 ```
+<br/>  
+
+### Navigate is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>
+As long as i know, in react-router v6 <Route> it's the only component that's able to be child of <Routes>
+
+From: 
+```javascript
+<Navigate from="*" to="/" />
+
+```
+
+To: 
+```javascript
+<Route exact path="*" element={<Navigate to="/" />} />
+```
+
+
+### When Log in, Chrome browser prompt Warning message : Check your passwords
+> Chrome found the password you just used in a data breach. To secure your accounts, we recomend checking your saved password.
+
+This is comes from Chrome's Mange password service
+
+[Link to Page](https://support.google.com/chrome/answer/95606?visit_id=637827380826233573-30611931&p=settings_password&rd=1#leak_detection_privacy) 

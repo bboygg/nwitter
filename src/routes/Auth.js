@@ -1,10 +1,11 @@
 import { authService, firebaseInstance } from "fbase";
 import { useState } from "react";
 
+
 const Auth = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [newAccount, setnewAccount] = useState(true);
+    const [newAccount, setNewAccount] = useState(""); // newAccount의 true, false 여부에 따라 onSubmit함수에서 회원가입과 로그인 할 수있도록 코드를 분기.
     const [error, setError] = useState("");
 
 
@@ -14,7 +15,7 @@ const Auth = () => {
         } = event;
         if (name === "email") {
             setEmail(value);
-        } else if (name === "password") {
+        } else if (name ==="password") {
             setPassword(value);
         }
     };
@@ -24,26 +25,27 @@ const Auth = () => {
         try {
             let data;
             if (newAccount) {
-                // create newAccount
+                //Sign up
                 data = await authService.createUserWithEmailAndPassword(email, password);
             } else {
-                // log in
+                //Log in
                 data = await authService.signInWithEmailAndPassword(email, password);
             }
             console.log(data);
-        } catch (error){
+        } catch (error) {
             setError(error.message);
         }
+        
     };
 
-    const toggleAccount = () => setnewAccount((prev) => !prev);
+    const toggleAccount = () => setNewAccount((prev) => !prev); // useState함수에 함수를 인자로 전달하면 인자로전달한 함수의 1번째 인자(prev)에 이전의 상태가 넘어옴.
 
     const onSocialClick = async (event) => {
         //console.log(event.target.name);
         const {
-            target: {name},
+            target: { name },
         } = event;
-        let provider;
+        let provider; //provider means 소셜로그인 제공업체 정도로 이해 하면 됨.
         if (name === "google") {
             provider = new firebaseInstance.auth.GoogleAuthProvider();
         } else if (name === "github") {
@@ -52,38 +54,38 @@ const Auth = () => {
         const data = await authService.signInWithPopup(provider);
         console.log(data);
     };
+    
 
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <input
-                    name="email" 
-                    type="email"
-                    placeholder="Email"
+                <input name="email" 
+                    type="email" 
+                    placeholder="Email" 
                     required
                     value={email}
-                    onChange={onChange}    
-                />
+                    onChange={onChange}
+                 />
                 <input 
                     name="password"
-                    type="password"
-                    placeholder="Password"
-                    required
+                    type="password" 
+                    placeholder="Password" 
+                    required 
                     value={password}
                     onChange={onChange}
                 />
-                <input type="submit" value={newAccount ? "Create Account" : "Log In"}  />
-                {error}
+                <input type="submit" value={newAccount ? "Create Account" : "Log In"} />
+                {error} 
             </form>
             <span onClick={toggleAccount}>
-                {newAccount ? "Sign In" : "Create Account"}
+                    {newAccount ? "Sign In" : "Create Account"}
             </span>
             <div>
                 <button onClick={onSocialClick} name="google">
-                    Continue with Google
+                    Goolge Account
                 </button>
                 <button onClick={onSocialClick} name="github">
-                    Continue with Github
+                    Github Account
                 </button>
             </div>
         </div>
