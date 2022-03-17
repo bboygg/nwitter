@@ -10,7 +10,7 @@ const Profile = ( {userObj} ) => {
         authService.signOut();
         navigate("/");
     };
-
+    /*
     const getMyNweets = async () => {
         const nweets = await dbService
             .collection("nweets")
@@ -26,7 +26,7 @@ const Profile = ( {userObj} ) => {
     }, []); 
     //Profile컴포넌트가 렌더링 될 때, 
     //즉, 프로필로 이동했을 때  뭔가 작업들이 진행되어야 하는데, 그 때  useEffect의 두번째 인자에 [] 빈 배열을 전달.
-
+    */
     return (
         <>
             <button onClick={onLogOutClick}>Log Out</button>
