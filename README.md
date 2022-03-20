@@ -7,7 +7,7 @@ Twitter clone project with React and Firebase.
 </br>
 
 ### Hosting Domain
-> https://bboygg/github.io/nwitter
+> https://bboygg.github.io/nwitter
 
 </br>
 
