@@ -6,6 +6,10 @@ Twitter clone project with React and Firebase.
 ## Getting started 🚀
 </br>
 
+### Hosting Domain
+> https://bboygg.io/nwitter
+
+</br>
 
 ### How to Run in local
 Run below command in terminal window to run program
