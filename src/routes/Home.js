@@ -40,7 +40,7 @@ const Home = ({ userObj }) => {
                 {nweets.map((nweet) => (
                     <Nweet 
                     key={nweet.id} 
-                    nweetObj={nweet} 
+                    nweetObj={nweet}
                     isOwner={nweet.creatorId === userObj.uid}
                     />
                 ))}
