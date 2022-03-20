@@ -6,11 +6,21 @@ Twitter clone project with React and Firebase.
 ## Getting started 🚀
 </br>
 
+
+### How to Run in local
 Run below command in terminal window to run program
 
 ```shell
 npm start
 ```
+
+### How to Deploy
+Run below command in terminal window to deploy
+```shell
+npm run deploy
+```
+
+
   
 ## Troubleshooting 🎯
 
