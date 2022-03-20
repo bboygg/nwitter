@@ -82,3 +82,17 @@ To:
 This is comes from Chrome's Mange password service
 
 [Link to Page](https://support.google.com/chrome/answer/95606?visit_id=637827380826233573-30611931&p=settings_password&rd=1#leak_detection_privacy) 
+
+
+### "You need to enable JavaScript to run this app." reactjs
+> When I am pull the project and start the project, and then I am getting error in console "You need to enable JavaScript to run this app." reactjs. 
+
+This is because of I put .env file in wrong path, not in root PATH, but inside of src directory.
+
+Before:
+./src/.env
+
+After: 
+./.env
+
+
