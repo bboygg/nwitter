@@ -1,5 +1,5 @@
-import { authService, dbService } from "fbase";
-import { useState, useEffect } from "react";
+import { authService } from "fbase";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 const Profile = ( {userObj, refreshUser} ) => {
