@@ -19,9 +19,9 @@ Run below command in terminal window to deploy
 ```shell
 npm run deploy
 ```
+</br>
 
 
-  
 ## Troubleshooting 🎯
 
 ### sh: react-scripts: command not found
