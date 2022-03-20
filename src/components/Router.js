@@ -5,9 +5,31 @@ import Profile from "routes/Profile";
 import Navigation from "components/Navigation";
 
 const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
+    
+    /*
+    style={{
+        maxWidth: 890,
+        width: "100%",
+        margin: "0 auto",
+        marginTop: 80,
+        display: "flex",
+        justifyContent: "center",
+    }}
+    */
+    
     return (
         <Router>
             {isLoggedIn && <Navigation userObj={userObj} />}
+            <div
+                style={{
+                    maxWidth: 890,
+                    width: "100%",
+                    margin: "0 auto",
+                    marginTop: 80,
+                    display: "flex",
+                    justifyContent: "center",
+                }}
+            >
             <Routes>
                 {isLoggedIn ? (
                     <>
@@ -19,10 +41,8 @@ const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
                 ) : (
                     <Route exact path="/" element = {<Auth />}/>
                 )}
-                {/*<Route exact path="*" element={<Navigate to="/" />} />      
-                This redirection event implemented in Profile Page using useNavigate function
-                */}
             </Routes>
+            </div>
         </Router>
     );
 };

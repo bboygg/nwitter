@@ -4,8 +4,6 @@ import Nweet from "components/Nweet";
 import NweetFactory from "components/NweetFactory";
 
 const Home = ({ userObj }) => {
-    //console.log(userObj);
-
     const [nweets, setNweets] = useState([]); // use for read tweet
 
 
@@ -32,13 +30,10 @@ const Home = ({ userObj }) => {
         });
     }, []);
 
-
-
-
     return ( 
-        <>
+        <div className="container">
             <NweetFactory userObj={ userObj } />
-            <div>
+            <div style={{ marginTop: 30 }}>
                 {nweets.map((nweet) => (
                     <Nweet 
                     key={nweet.id} 
@@ -48,7 +43,7 @@ const Home = ({ userObj }) => {
                 ))}
             </div>
 
-        </>
+        </div>
     );
 };
 
